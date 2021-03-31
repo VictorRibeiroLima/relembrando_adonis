@@ -1,10 +1,9 @@
 const Permission = use('App/Models/Permission')
 
 class PermissionRepository{
-    async create(permission){
-        permission.name = permission.name.toUpperCase();
-        permission.description = permission.description.toUpperCase();
-        return Permission.create(permission)
+    async hasPermission(user,permissionId){
+        const permission = await user.permissions().wherePivot('permission_id',permissionId).fetch()
+        return permission.rows.length > 0
     }
 }
 

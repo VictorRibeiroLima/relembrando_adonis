@@ -26,5 +26,5 @@ Route.group(()=>{
 }).prefix('users')
 
 Route.group(()=>{
-  Route.post('','PermissionController.create').validator('Permission')
+  Route.post('','PermissionController.create').validator('Permission').middleware('permission:1')
 }).prefix('permission').middleware('auth')

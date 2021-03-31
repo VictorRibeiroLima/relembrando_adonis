@@ -1,12 +1,13 @@
 const User = use('App/Models/User')
+const AbstractRepository = use('/Abstracts/AbstractRepository')
 
-class UserRepository {
-    async create(user){
-        return User.create(user)
+class UserRepository extends AbstractRepository {
+    constructor(){
+        super(User)
     }
 
     async update({userId,email,password,permissions}){
-        const user = await User.findOrFail(userId)
+        const user = await findOrFailById(userId)
         if(permissions && permissions.length > 0){
             await user.permissions().attach(permissions);
             await user.permissions().fetch();

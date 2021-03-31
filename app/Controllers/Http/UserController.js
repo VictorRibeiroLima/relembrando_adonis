@@ -4,7 +4,7 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-const Repository = use('App/Repositorys/UserRepository')
+const Service = use('App/Services/UserService')
 const StatusCode = use('App/Enums/StatusCode')
 
 /**
@@ -22,11 +22,11 @@ class UserController {
    * @param {Response} ctx.response
    */
   async create ({ request, response }) {
-    const repository = new Repository()
+    const service = new Service()
 
     const data = request.only(['username','email','password'])
     
-    const user = await repository.create(data)
+    const user = await service.create(data)
 
     response.status(StatusCode.CREATED).send(user)
   }
@@ -58,13 +58,13 @@ class UserController {
    */
   async update ({ params, request, response,auth }) {
 
-    const repository = new Repository()
+    const service = new Service()
 
     const data = request.only(['username','email','password','permissions'])
     
     data.userId = (await auth.getUser()).id
 
-    const user = await repository.update(data)
+    const user = await service.update(data)
 
     response.status(StatusCode.ACCEPTED).send(user)
   }
