@@ -4,7 +4,7 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-const Repository = use('App/Repositorys/PermissionRepository')
+const Service = use('App/Service/PermissionService')
 const StatusCode = use('App/Enums/StatusCode')
 
 class PermissionController {
@@ -18,11 +18,11 @@ class PermissionController {
    * @param {Response} ctx.response
    */
   async create ({ request, response }) {
-    const repository = new Repository()
+    const service = new Service()
 
     const data = request.only(['name','description'])
     
-    const permission = await repository.create(data)
+    const permission = await service.create(data)
 
     response.status(StatusCode.CREATED).send(permission)
   }

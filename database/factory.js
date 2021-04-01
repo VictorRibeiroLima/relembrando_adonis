@@ -13,14 +13,13 @@
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
-const Hash = use('Hash')
 
 
 Factory.blueprint('App/Models/User', async () => {
     return {
       email:'victorlima.12@hotmail.com',
       username:'zaiamlata',
-      password: await Hash.make('1234')
+      password: '1234'
     }
   })
 
