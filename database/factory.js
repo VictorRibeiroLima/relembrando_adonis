@@ -12,7 +12,24 @@
 */
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
-// const Factory = use('Factory')
+const Factory = use('Factory')
+const Hash = use('Hash')
+
+
+Factory.blueprint('App/Models/User', async () => {
+    return {
+      email:'victorlima.12@hotmail.com',
+      username:'zaiamlata',
+      password: await Hash.make('1234')
+    }
+  })
+
+  Factory.blueprint('App/Models/Permission', async () => {
+    return {
+        name: 'CREATE PERMISSION',
+        description: 'A PERMISSION THAT ALLOW THE USER TO CREATE PERMISSIONS'
+    }
+  })
 
 // Factory.blueprint('App/Models/User', (faker) => {
 //   return {
