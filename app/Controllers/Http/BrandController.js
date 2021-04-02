@@ -4,13 +4,14 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-const Service = use('App/Services/PermissionService')
+const Service = use('App/Services/BrandService')
 const StatusCode = use('App/Enums/StatusCode')
 
-class PermissionController {
 
-    /**
-   * Create/save a new permission.
+class BrandController {
+
+     /**
+   * Create/save a new Brand.
    * POST users
    *
    * @param {object} ctx
@@ -20,13 +21,12 @@ class PermissionController {
   async create ({ request, response }) {
     const service = new Service()
 
-    const data = request.only(['name','description'])
+    const data = request.only(['name'])
     
-    const permission = await service.create(data)
+    const brand = await service.create(data)
 
-    response.status(StatusCode.CREATED).send(permission)
+    response.status(StatusCode.CREATED).send(brand)
   }
-
 }
 
-module.exports = PermissionController
+module.exports = BrandController

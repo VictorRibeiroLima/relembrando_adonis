@@ -7,7 +7,7 @@ class UserRepository extends AbstractRepository {
     }
 
     async update({userId,email,password,permissions}){
-        const user = await findOrFailById(userId)
+        const user = await super.findOrFailById(userId)
         if(permissions && permissions.length > 0){
             await user.permissions().attach(permissions);
             await user.permissions().fetch();

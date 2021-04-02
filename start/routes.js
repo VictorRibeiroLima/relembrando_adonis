@@ -16,15 +16,16 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
 Route.group(()=>{
   Route.post('','UserController.create').validator('User')
   Route.post('login','UserController.login')
   Route.put('','UserController.update').middleware('auth')
-}).prefix('users')
+}).prefix('user')
 
 Route.group(()=>{
   Route.post('','PermissionController.create').validator('Permission').middleware('permission:1')
 }).prefix('permission').middleware('auth')
+
+Route.group(()=>{
+  Route.post('','BrandController.create').validator('Brand').middleware('permission:5')
+}).prefix('brand').middleware('auth')

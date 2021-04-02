@@ -10,6 +10,10 @@ class UserService extends AbstractService {
         const user = await this.repository.havePermission(userId,permissionId)
         return user.rows.length > 0
     }
+
+    async update(user){
+        return this.repository.update(user)
+    }
 }
 
 module.exports = UserService
