@@ -11,7 +11,7 @@ class PermissionController {
 
     /**
    * Create/save a new permission.
-   * POST users
+   * POST permission
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -25,6 +25,22 @@ class PermissionController {
     const permission = await service.create(data)
 
     response.status(StatusCode.CREATED).send(permission)
+  }
+
+   /**
+   * find all system permissions.
+   * GET permission
+   *
+   * @param {object} ctx
+   * @param {Response} ctx.response
+   */
+  async findAll({response}){
+    const service = new Service()
+
+    const permissions = await service.findAll()
+
+    response.status(StatusCode.OK).send(permissions)
+
   }
 
 }

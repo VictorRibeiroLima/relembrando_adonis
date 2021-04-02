@@ -27,6 +27,22 @@ class BrandController {
 
     response.status(StatusCode.CREATED).send(brand)
   }
+
+  /**
+   * find all system brands.
+   * GET brand
+   *
+   * @param {object} ctx
+   * @param {Response} ctx.response
+   */
+   async findAll({response}){
+    const service = new Service()
+
+    const brands = await service.findAll()
+
+    response.status(StatusCode.OK).send(brands)
+
+  }
 }
 
 module.exports = BrandController

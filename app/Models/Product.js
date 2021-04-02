@@ -4,6 +4,13 @@
 const Model = use('Model')
 
 class Product extends Model {
+    static get Serializer () {
+        return use('App/Models/Serializers/JsonSerializer')
+    }
+
+    brand(){
+        return this.belongsTo('App/Model/Brand')
+    }
 }
 
 module.exports = Product

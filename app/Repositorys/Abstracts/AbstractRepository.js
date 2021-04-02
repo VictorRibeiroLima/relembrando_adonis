@@ -22,6 +22,10 @@ class AbstractRepository {
         return this.model.all()
     }
 
+    async findOrCreate(searchParams,data){
+        return this.model.findOrCreate(searchParams,data)
+    }
+
     async delete(id){
         const data = await this.findOrFailById(id)
         return this.data.delete()

@@ -7,7 +7,10 @@ const Model = use('Model')
 const Hash = use('Hash')
 
 class User extends Model {
-  static boot () {
+  static get Serializer() {
+    return use('App/Models/Serializers/JsonSerializer')
+  }
+  static boot() {
     super.boot()
 
     /**
@@ -21,7 +24,7 @@ class User extends Model {
     })
   }
 
-  static get hidden () {
+  static get hidden() {
     return ['password']
   }
   /**
@@ -34,11 +37,11 @@ class User extends Model {
    *
    * @return {Object}
    */
-  tokens () {
+  tokens() {
     return this.hasMany('App/Models/Token')
   }
 
-  permissions(){
+  permissions() {
     return this.belongsToMany('App/Models/Permission').pivotTable('user_permissions')
   }
 }

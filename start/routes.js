@@ -24,8 +24,14 @@ Route.group(()=>{
 
 Route.group(()=>{
   Route.post('','PermissionController.create').validator('Permission').middleware('permission:1')
+  Route.get('','PermissionController.findAll')
 }).prefix('permission').middleware('auth')
 
 Route.group(()=>{
   Route.post('','BrandController.create').validator('Brand').middleware('permission:5')
+  Route.get('','BrandController.findAll')
 }).prefix('brand').middleware('auth')
+
+Route.group(()=>{
+  Route.post('','ProductController.create').validator('Product').middleware('permission:2')
+}).prefix('product').middleware('auth')
