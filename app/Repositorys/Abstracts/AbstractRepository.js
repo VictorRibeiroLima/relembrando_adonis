@@ -1,3 +1,5 @@
+const ModelNotFoundException = use('App/Exceptions/ModelNotFoundException')
+
 class AbstractRepository {
     constructor (model){
         if(this === AbstractRepository){
@@ -15,7 +17,11 @@ class AbstractRepository {
     }
 
     async findOrFailById(id){
-        return this.model.findOrFail(id)
+        const data = await this.findById(id)
+        if(data){
+            return data
+        }
+        throw new ModelNotFoundException(`${this.model.name} not found`)
     }
 
     async findAll(){

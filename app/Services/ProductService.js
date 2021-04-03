@@ -9,6 +9,7 @@ class ProductService extends AbstractService{
 
     async findOrCreate(data){
         const brandService = new BrandService()
+        console.log('bateu aqui')
         await brandService.findOrFailById(data.brandId)
         const searchParams = {name:data.name, brandId:data.brandId}
         return this.repository.findOrCreate(searchParams,data)
